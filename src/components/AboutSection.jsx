@@ -25,7 +25,10 @@ export default function AboutSection({ onExplore }) {
 
   const [isMoving, setIsMoving] = useState(false);
 
-  // Move front image to the back
+  // =====================================================
+  // MOVE FRONT IMAGE TO THE BACK
+  // =====================================================
+
   const nextImage = () => {
     if (isMoving) return;
 
@@ -45,10 +48,14 @@ export default function AboutSection({ onExplore }) {
       });
 
       setIsMoving(false);
-    }, 700);
+    }, 500);
   };
 
-  // Automatically move image every 5 seconds
+  // =====================================================
+  // AUTOMATIC IMAGE CHANGE
+  // Changes every 3 seconds
+  // =====================================================
+
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
@@ -62,12 +69,15 @@ export default function AboutSection({ onExplore }) {
       id="about"
       className="relative py-24 md:py-32 bg-slate-50 text-slate-900 overflow-hidden"
     >
+
       {/* ================= MAIN CONTENT ================= */}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-center">
 
           {/* ================= LEFT SIDE - IMAGE STACK ================= */}
+
           <div className="lg:col-span-6 lg:pr-14">
 
             <div
@@ -83,6 +93,7 @@ export default function AboutSection({ onExplore }) {
             >
 
               {/* ================= STACKED IMAGES ================= */}
+
               {imageOrder.map((imageIndex, stackIndex) => {
 
                 const isFront = stackIndex === 0;
@@ -108,15 +119,15 @@ export default function AboutSection({ onExplore }) {
 
                       ${isMoving && isFront
                         ? `
-                            z-10
-                            opacity-100
-                            translate-x-24
-                            translate-y-8
-                            scale-[0.88]
-                            rotate-6
-                          `
+                              z-40
+                              opacity-100
+                              translate-x-0
+                              translate-y-5
+                              scale-[0.96]
+                              rotate-0
+                            `
                         : `
-                            ${stackIndex === 0
+                              ${stackIndex === 0
                           ? 'z-40 scale-100 translate-x-0 translate-y-0 rotate-0'
                           : stackIndex === 1
                             ? 'z-30 scale-[0.95] translate-x-4 translate-y-2 rotate-1'
@@ -124,11 +135,11 @@ export default function AboutSection({ onExplore }) {
                               ? 'z-20 scale-[0.90] translate-x-8 translate-y-4 rotate-2'
                               : 'z-10 scale-[0.85] translate-x-12 translate-y-6 rotate-3'
                         }
-                          `
+                            `
                       }
 
                       transition-all
-                      duration-700
+                      duration-500
                       ease-in-out
 
                       ${isFront ? 'cursor-pointer' : ''}
@@ -154,10 +165,13 @@ export default function AboutSection({ onExplore }) {
             </div>
           </div>
 
+
           {/* ================= RIGHT SIDE - CONTENT ================= */}
+
           <div className="lg:col-span-6 lg:pl-14 space-y-6 text-left">
 
             {/* Section Label */}
+
             <div
               className="
                 inline-flex
@@ -177,14 +191,20 @@ export default function AboutSection({ onExplore }) {
                 shadow-sm
               "
             >
+
               <Flame
                 className="w-5 h-5 fill-amber-500 text-amber-500"
               />
 
-              <span>About SafetyAI</span>
+              <span>
+                About SafetyAI
+              </span>
+
             </div>
 
+
             {/* Heading */}
+
             <h3
               className="
                 text-3xl
@@ -200,7 +220,9 @@ export default function AboutSection({ onExplore }) {
               AI-Powered Industrial Safety Intelligence
             </h3>
 
+
             {/* Description */}
+
             <p
               className="
                 text-base
@@ -219,7 +241,9 @@ export default function AboutSection({ onExplore }) {
               into serious incidents.
             </p>
 
+
             {/* ================= CONTINUOUS ANALYSIS ================= */}
+
             <div className="space-y-2.5 pt-1">
 
               <div
@@ -235,6 +259,7 @@ export default function AboutSection({ onExplore }) {
                 Continuous Analysis of:
               </div>
 
+
               <div
                 className="
                   grid
@@ -245,6 +270,7 @@ export default function AboutSection({ onExplore }) {
               >
 
                 {/* Unsafe Acts */}
+
                 <div
                   className="
                     flex
@@ -258,6 +284,7 @@ export default function AboutSection({ onExplore }) {
                     shadow-sm
                   "
                 >
+
                   <CheckCircle2
                     className="w-4 h-4 text-amber-500 shrink-0"
                   />
@@ -265,9 +292,12 @@ export default function AboutSection({ onExplore }) {
                   <span className="text-xs font-bold text-slate-800">
                     Unsafe Acts
                   </span>
+
                 </div>
 
+
                 {/* Unsafe Conditions */}
+
                 <div
                   className="
                     flex
@@ -281,6 +311,7 @@ export default function AboutSection({ onExplore }) {
                     shadow-sm
                   "
                 >
+
                   <CheckCircle2
                     className="w-4 h-4 text-amber-500 shrink-0"
                   />
@@ -288,9 +319,12 @@ export default function AboutSection({ onExplore }) {
                   <span className="text-xs font-bold text-slate-800">
                     Unsafe Conditions
                   </span>
+
                 </div>
 
+
                 {/* Near-Miss Reports */}
+
                 <div
                   className="
                     flex
@@ -304,6 +338,7 @@ export default function AboutSection({ onExplore }) {
                     shadow-sm
                   "
                 >
+
                   <CheckCircle2
                     className="w-4 h-4 text-amber-500 shrink-0"
                   />
@@ -311,15 +346,20 @@ export default function AboutSection({ onExplore }) {
                   <span className="text-xs font-bold text-slate-800">
                     Near-Miss Reports
                   </span>
+
                 </div>
 
               </div>
+
             </div>
 
+
             {/* ================= KEY FEATURES ================= */}
+
             <div className="space-y-2 pt-2">
 
               {/* Feature 1 */}
+
               <div className="flex items-start gap-2.5">
 
                 <div
@@ -332,7 +372,9 @@ export default function AboutSection({ onExplore }) {
                     shrink-0
                   "
                 >
+
                   <CheckCircle2 className="w-3.5 h-3.5" />
+
                 </div>
 
                 <span className="text-sm font-semibold text-slate-700">
@@ -342,7 +384,9 @@ export default function AboutSection({ onExplore }) {
 
               </div>
 
+
               {/* Feature 2 */}
+
               <div className="flex items-start gap-2.5">
 
                 <div
@@ -355,7 +399,9 @@ export default function AboutSection({ onExplore }) {
                     shrink-0
                   "
                 >
+
                   <CheckCircle2 className="w-3.5 h-3.5" />
+
                 </div>
 
                 <span className="text-sm font-semibold text-slate-700">
@@ -368,8 +414,11 @@ export default function AboutSection({ onExplore }) {
             </div>
 
           </div>
+
         </div>
+
       </div>
+
     </section>
   );
 }

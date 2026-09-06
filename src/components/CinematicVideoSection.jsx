@@ -18,7 +18,6 @@ import sif4 from '../assets/sif4.jpg';
 import sif5 from '../assets/sif5.jpg';
 import sif6 from '../assets/sif6.jpg';
 
-
 // =====================================================
 // SIF INTELLIGENCE SECTION
 // =====================================================
@@ -41,7 +40,6 @@ export default function CinematicVideoSection({
     sif6,
   ];
 
-
   // =====================================================
   // IMAGE ORDER
   // The first image is always the front image
@@ -51,13 +49,11 @@ export default function CinematicVideoSection({
     images.map((_, index) => index)
   );
 
-
   // =====================================================
   // ANIMATION STATE
   // =====================================================
 
   const [isMoving, setIsMoving] = useState(false);
-
 
   // =====================================================
   // MOVE FRONT IMAGE TO BACK
@@ -84,13 +80,12 @@ export default function CinematicVideoSection({
 
       setIsMoving(false);
 
-    }, 600);
+    }, 500);
   };
-
 
   // =====================================================
   // AUTOMATIC IMAGE CHANGE
-  // Changes every 5 seconds
+  // Changes every 3 seconds
   // =====================================================
 
   useEffect(() => {
@@ -104,7 +99,6 @@ export default function CinematicVideoSection({
     return () => clearInterval(interval);
 
   }, [isMoving]);
-
 
   // =====================================================
   // RETURN
@@ -151,7 +145,6 @@ export default function CinematicVideoSection({
 
       </div>
 
-
       {/* =================================================
           MAIN CONTAINER
       ================================================= */}
@@ -168,7 +161,6 @@ export default function CinematicVideoSection({
             lg:gap-0
           "
         >
-
 
           {/* =================================================
               LEFT SIDE
@@ -188,7 +180,6 @@ export default function CinematicVideoSection({
                 lg:max-w-none
               "
             >
-
 
               {/* =================================================
                   STACKED IMAGES
@@ -217,7 +208,7 @@ export default function CinematicVideoSection({
                       bg-white
                       shadow-2xl
                       transition-all
-                      duration-700
+                      duration-500
                       ease-in-out
                       ${isFront
                         ? 'cursor-pointer'
@@ -233,7 +224,6 @@ export default function CinematicVideoSection({
                       zIndex:
                         images.length - stackIndex,
 
-
                       // =================================================
                       // POSITION + ROTATION
                       // =================================================
@@ -246,13 +236,13 @@ export default function CinematicVideoSection({
                           ? isMoving
 
                             ? `
-                              translateX(110%)
-                              rotate(8deg)
-                              scale(0.92)
+                              translateY(18px)
+                              rotate(0deg)
+                              scale(0.96)
                             `
 
                             : `
-                              translateX(0)
+                              translateY(0)
                               rotate(0deg)
                               scale(1)
                             `
@@ -265,7 +255,6 @@ export default function CinematicVideoSection({
                             scale(${1 - stackIndex * 0.035})
                           `,
 
-
                       // =================================================
                       // OPACITY
                       // =================================================
@@ -277,7 +266,6 @@ export default function CinematicVideoSection({
 
                     }}
                   >
-
 
                     {/* =================================================
                         IMAGE
@@ -292,7 +280,6 @@ export default function CinematicVideoSection({
                         object-cover
                       "
                     />
-
 
                     {/* =================================================
                         IMAGE GRADIENT
@@ -309,7 +296,6 @@ export default function CinematicVideoSection({
                         to-transparent
                       "
                     />
-
 
                     {/* =================================================
                         FRONT IMAGE CONTENT
@@ -328,7 +314,6 @@ export default function CinematicVideoSection({
                           justify-between
                         "
                       >
-
 
                         {/* IMAGE LABEL */}
 
@@ -366,7 +351,6 @@ export default function CinematicVideoSection({
                           </p>
 
                         </div>
-
 
                         {/* NEXT BUTTON */}
 
@@ -414,7 +398,6 @@ export default function CinematicVideoSection({
 
           </div>
 
-
           {/* =================================================
               RIGHT SIDE
               SIF INTELLIGENCE CONTENT
@@ -428,7 +411,6 @@ export default function CinematicVideoSection({
               lg:pl-14
             "
           >
-
 
             {/* =================================================
                 SECTION TAG
@@ -468,7 +450,6 @@ export default function CinematicVideoSection({
 
             </div>
 
-
             {/* =================================================
                 MAIN HEADING
             ================================================= */}
@@ -487,7 +468,6 @@ export default function CinematicVideoSection({
             >
               Detect Hidden Safety Signals Before Incidents
             </h3>
-
 
             {/* =================================================
                 PROMINENT METRIC
@@ -527,7 +507,6 @@ export default function CinematicVideoSection({
 
             </div>
 
-
             {/* =================================================
                 DESCRIPTION
             ================================================= */}
@@ -547,13 +526,11 @@ export default function CinematicVideoSection({
               refinery turnaround tasks.
             </p>
 
-
             {/* =================================================
                 FEATURES
             ================================================= */}
 
             <div className="space-y-3 pt-2">
-
 
               {/* =================================================
                   FEATURE 1
@@ -589,7 +566,6 @@ export default function CinematicVideoSection({
 
               </div>
 
-
               {/* =================================================
                   FEATURE 2
               ================================================= */}
@@ -623,7 +599,6 @@ export default function CinematicVideoSection({
                 </span>
 
               </div>
-
 
               {/* =================================================
                   FEATURE 3

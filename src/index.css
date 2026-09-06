@@ -1,65 +1,120 @@
 @import "tailwindcss";
 
 @layer base {
+
   :root {
+
     --bg-primary: #FAF8F5;
+
     --bg-secondary: #F4F1EA;
+
     --bg-tertiary: #EDE8DE;
+
     --text-primary: #0F172A;
+
     --text-secondary: #334155;
+
     --text-muted: #64748B;
+
     --card-bg: rgba(255, 255, 255, 0.95);
+
     --card-border: rgba(226, 218, 206, 0.8);
+
     --obsidian-dark: #070709;
+
     --amber-gold: #F59E0B;
+
     --amber-gold-dark: #D97706;
+
   }
 
   .dark {
+
     --bg-primary: #070709;
+
     --bg-secondary: #0D0D11;
+
     --bg-tertiary: #14141A;
+
     --text-primary: #F8FAFC;
+
     --text-secondary: #94A3B8;
+
     --text-muted: #64748B;
+
     --card-bg: rgba(13, 13, 17, 0.9);
+
     --card-border: rgba(255, 255, 255, 0.08);
+
     --obsidian-dark: #050507;
+
     --amber-gold: #FBBF24;
+
     --amber-gold-dark: #F59E0B;
+
   }
 
   body {
+
     font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+
     font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+
   }
+
 }
 
 @keyframes ropeHangingSway {
-  0%, 100% {
+
+  0%,
+  100% {
+
     transform: translateY(-4px) rotate(-3.5deg);
+
   }
+
   50% {
+
     transform: translateY(5px) rotate(3.5deg);
+
   }
+
 }
 
 @keyframes ropeClimbingFast {
-  0%, 100% {
+
+  0%,
+  100% {
+
     transform: scale(1.1) translateY(-6px) rotate(-6deg);
+
   }
+
   50% {
+
     transform: scale(1.1) translateY(6px) rotate(6deg);
+
   }
+
 }
 
 .animate-silly-bob {
+
   animation: ropeHangingSway 2s ease-in-out infinite;
+
 }
 
 .animate-silly-drag {
+
   animation: ropeClimbingFast 0.3s ease-in-out infinite;
+
 }
