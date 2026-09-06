@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python and Database
+__pycache__/
+*.py[cod]
+*$py.class
+*.db
+*.sqlite3
+.env

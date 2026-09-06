@@ -80,7 +80,7 @@ export default function Navbar({ onOpenLogin, onOpenDemo }) {
             </div>
           </button>
 
-          {/* Smooth Scroll Navigation Links - NO DROPDOWNS, NO ARROWS */}
+          {/* Smooth Scroll Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <button 
@@ -93,7 +93,7 @@ export default function Navbar({ onOpenLogin, onOpenDemo }) {
             ))}
           </nav>
 
-          {/* Right Side: Organization Login Button */}
+          {/* Right Side: Organization Login Button (Always Original) */}
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={onOpenLogin}
