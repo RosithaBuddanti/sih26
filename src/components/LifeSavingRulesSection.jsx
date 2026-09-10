@@ -360,7 +360,6 @@ export default function LifeSavingRulesSection() {
         "
       />
 
-
       <div
         className="
           max-w-[1400px]
@@ -374,599 +373,351 @@ export default function LifeSavingRulesSection() {
       >
 
         {/* =====================================================
-            MAIN TWO-COLUMN LAYOUT
+            TOP HEADER & HIGHLIGHTS - FULL WIDTH
         ===================================================== */}
+        <div className="text-center max-w-4xl mx-auto space-y-4 mb-12">
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            lg:grid-cols-12
-            gap-12
-            lg:gap-0
-            items-center
-          "
-        >
-
-          {/* =====================================================
-              LEFT SIDE - TEXT
-          ===================================================== */}
-
+          {/* SECTION TAG */}
           <div
             className="
-              lg:col-span-6
-              lg:pr-12
-              xl:pr-14
-              space-y-6
-              text-left
+              inline-flex
+              items-center
+              gap-2.5
+              px-4
+              py-2
+              rounded-full
+              bg-amber-500/15
+              border
+              border-amber-400/40
+              text-amber-300
+              text-xs
+              sm:text-sm
+              font-bold
+              uppercase
+              tracking-wider
+              backdrop-blur-md
+              shadow-sm
+              shadow-amber-500/10
             "
           >
-
-            {/* SECTION TAG */}
-
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-2.5
-                px-5
-                py-2.5
-                rounded-xl
-                bg-amber-500/20
-                border-2
-                border-amber-400
-                text-amber-300
-                text-sm
-                font-black
-                uppercase
-                tracking-wider
-                backdrop-blur-md
-                shadow-md
-              "
-            >
-
-              <Flame
-                className="
-                  w-5
-                  h-5
-                  text-amber-400
-                  animate-pulse
-                "
-              />
-
-              <span>
-                Life-Saving Rules
-              </span>
-
-            </div>
-
-
-            {/* HEADING */}
-
-            <h3
-              className="
-                text-3xl
-                sm:text-4xl
-                md:text-5xl
-                font-bold
-                text-white
-                font-heading
-                leading-tight
-                tracking-tight
-              "
-            >
-              Standardized Defense Against Fatal Trajectories
-            </h3>
-
-
-            {/* METRIC */}
-
-            <div
-              className="
-                flex
-                items-baseline
-                gap-3
-                pt-1
-              "
-            >
-
-              <span
-                className="
-                  text-4xl
-                  sm:text-5xl
-                  font-black
-                  text-amber-400
-                  font-heading
-                "
-              >
-                6 Rules
-              </span>
-
-              <span
-                className="
-                  text-xs
-                  sm:text-sm
-                  text-slate-300
-                  font-medium
-                "
-              >
-                Automated NLP Extraction &amp; Bow-Tie Health Verification
-              </span>
-
-            </div>
-
-
-            {/* DESCRIPTION */}
-
-            <p
-              className="
-                text-base
-                sm:text-lg
-                text-slate-300
-                leading-relaxed
-                font-normal
-              "
-            >
-              Our AI engine automatically maps free-text field reports and
-              near-misses against standardized IOGP Life-Saving Rules to
-              detect critical barrier failures and high-energy vectors in
-              real-time.
-            </p>
-
-
-            {/* =====================================================
-                FEATURE LIST
-            ===================================================== */}
-
-            <div className="space-y-3 pt-2">
-
-              <div
-                className="
-                  flex
-                  items-start
-                  gap-3
-                  p-3
-                  rounded-xl
-                  bg-white/[0.02]
-                  border
-                  border-white/[0.05]
-                  hover:border-amber-500/20
-                  transition-colors
-                "
-              >
-
-                <div
-                  className="
-                    mt-0.5
-                    p-1
-                    rounded-full
-                    bg-amber-500/20
-                    text-amber-400
-                    shrink-0
-                  "
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                </div>
-
-                <span className="text-xs sm:text-sm font-semibold text-slate-200">
-                  LOTO &amp; Isolation: Zero-energy state &amp;
-                  depressurization verification
-                </span>
-
-              </div>
-
-
-              <div
-                className="
-                  flex
-                  items-start
-                  gap-3
-                  p-3
-                  rounded-xl
-                  bg-white/[0.02]
-                  border
-                  border-white/[0.05]
-                  hover:border-amber-500/20
-                  transition-colors
-                "
-              >
-
-                <div
-                  className="
-                    mt-0.5
-                    p-1
-                    rounded-full
-                    bg-amber-500/20
-                    text-amber-400
-                    shrink-0
-                  "
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                </div>
-
-                <span className="text-xs sm:text-sm font-semibold text-slate-200">
-                  Atmospheric Guardrails: H2S, flammable gas,
-                  and SCBA stand-by checks
-                </span>
-
-              </div>
-
-
-              <div
-                className="
-                  flex
-                  items-start
-                  gap-3
-                  p-3
-                  rounded-xl
-                  bg-white/[0.02]
-                  border
-                  border-white/[0.05]
-                  hover:border-amber-500/20
-                  transition-colors
-                "
-              >
-
-                <div
-                  className="
-                    mt-0.5
-                    p-1
-                    rounded-full
-                    bg-amber-500/20
-                    text-amber-400
-                    shrink-0
-                  "
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                </div>
-
-                <span className="text-xs sm:text-sm font-semibold text-slate-200">
-                  Line of Fire &amp; Drops: 100% harness tie-off
-                  &amp; secondary whip-checks
-                </span>
-
-              </div>
-
-            </div>
-
-
-            {/* STATUS */}
-
-            <div
-              className="
-                pt-2
-                text-xs
-                text-slate-400
-                font-mono
-                flex
-                items-center
-                gap-2
-              "
-            >
-
-              <span
-                className="
-                  inline-block
-                  w-2
-                  h-2
-                  rounded-full
-                  bg-amber-400
-                  animate-ping
-                "
-              />
-
-              <span>
-                Hover or click any card to inspect barrier defense &amp; triggers
-              </span>
-
-            </div>
-
+            <Flame className="w-4 h-4 text-amber-400 animate-pulse" />
+            <span>IOGP Standard Guardrails • 6 Rules</span>
           </div>
 
-
-          {/* =====================================================
-              RIGHT SIDE - RULE CARDS
-          ===================================================== */}
-
-          <div
+          {/* HEADING */}
+          <h2
             className="
-              lg:col-span-6
-              lg:pl-10
-              xl:pl-12
-              w-full
+              text-3xl
+              sm:text-4xl
+              md:text-5xl
+              font-extrabold
+              text-white
+              font-heading
+              leading-tight
+              tracking-tight
             "
           >
+            Standardized Defense Against{' '}
+            <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent">
+              Fatal Trajectories
+            </span>
+          </h2>
 
-            <div
-              className="
-                grid
-                grid-cols-1
-                sm:grid-cols-2
-                gap-4
-                sm:gap-5
-                w-full
-              "
-            >
+          {/* SUBTITLE */}
+          <p
+            className="
+              text-base
+              sm:text-lg
+              text-slate-300
+              max-w-3xl
+              mx-auto
+              leading-relaxed
+              font-normal
+            "
+          >
+            Our AI engine automatically maps free-text field reports and near-misses against standardized IOGP Life-Saving Rules to detect critical barrier failures and high-energy vectors in real-time.
+          </p>
 
-              {rules.map((rule) => {
-
-                const Icon = rule.icon;
-
-                return (
-                  <div
-                    key={rule.id}
-                    onClick={() => setSelectedRule(rule)}
-                    className={`
-                      group
-                      relative
-                      ${rule.cardBg}
-                      rounded-2xl
-                      p-5
-                      sm:p-6
-                      border
-                      ${rule.borderColor}
-                      shadow-xl
-                      ${rule.shadowColor}
-                      transition-all
-                      duration-300
-                      hover:-translate-y-2
-                      hover:scale-[1.02]
-                      cursor-pointer
-                      flex
-                      flex-col
-                      justify-between
-                      overflow-hidden
-                    `}
-                  >
-
-                    {/* AMBIENT HOVER FLARE */}
-
-                    <div
-                      className={`
-                        absolute
-                        -top-12
-                        -right-12
-                        w-40
-                        h-40
-                        ${rule.flareBg}
-                        rounded-full
-                        blur-2xl
-                        opacity-0
-                        group-hover:opacity-100
-                        transition-opacity
-                        duration-500
-                        pointer-events-none
-                      `}
-                    />
-
-
-                    {/* SHIMMER EFFECT */}
-
-                    <div
-                      className="
-                        absolute
-                        inset-0
-                        -translate-x-full
-                        group-hover:translate-x-full
-                        transition-transform
-                        duration-1000
-                        bg-gradient-to-r
-                        from-transparent
-                        via-white/[0.07]
-                        to-transparent
-                        pointer-events-none
-                      "
-                    />
-
-
-                    {/* CARD CONTENT */}
-
-                    <div className="relative z-10">
-
-                      {/* TOP ROW */}
-
-                      <div
-                        className="
-                          flex
-                          items-center
-                          justify-between
-                          mb-4
-                        "
-                      >
-
-                        {/* ICON */}
-
-                        <div
-                          className={`
-                            w-12
-                            h-12
-                            rounded-xl
-                            bg-gradient-to-br
-                            ${rule.iconBg}
-                            text-slate-950
-                            flex
-                            items-center
-                            justify-center
-                            shadow-md
-                            group-hover:rotate-6
-                            group-hover:scale-110
-                            transition-all
-                            duration-300
-                          `}
-                        >
-                          <Icon className="w-6 h-6 stroke-[2.5]" />
-                        </div>
-
-
-                        {/* CODE */}
-
-                        <span
-                          className={`
-                            flex
-                            items-center
-                            gap-1.5
-                            px-2.5
-                            py-1
-                            rounded-full
-                            text-[10px]
-                            font-mono
-                            font-bold
-                            border
-                            transition-all
-                            ${rule.accentBg}
-                          `}
-                        >
-
-                          <span
-                            className="
-                              w-1.5
-                              h-1.5
-                              rounded-full
-                              bg-current
-                              animate-pulse
-                            "
-                          />
-
-                          {rule.code}
-
-                        </span>
-
-                      </div>
-
-
-                      {/* TITLE */}
-
-                      <h4
-                        className="
-                          text-lg
-                          font-bold
-                          font-heading
-                          text-white
-                          mb-2
-                          transition-colors
-                        "
-                      >
-                        {rule.title}
-                      </h4>
-
-
-                      {/* DESCRIPTION */}
-
-                      <p
-                        className="
-                          text-xs
-                          sm:text-[13px]
-                          text-slate-300/90
-                          leading-relaxed
-                          line-clamp-2
-                          mb-3
-                          group-hover:text-slate-100
-                          transition-colors
-                        "
-                      >
-                        {rule.shortDescription}
-                      </p>
-
-
-                      {/* ENERGY VECTOR */}
-
-                      <div
-                        className="
-                          inline-block
-                          px-2.5
-                          py-1
-                          rounded-lg
-                          bg-white/[0.04]
-                          border
-                          border-white/[0.08]
-                          text-[11px]
-                          font-mono
-                          text-slate-300
-                          mb-3
-                        "
-                      >
-                        {rule.vectorTag}
-                      </div>
-
-                    </div>
-
-
-                    {/* BOTTOM ROW */}
-
-                    <div
-                      className={`
-                        relative
-                        z-10
-                        pt-3
-                        border-t
-                        border-white/[0.08]
-                        flex
-                        items-center
-                        justify-between
-                        text-xs
-                        font-bold
-                        font-mono
-                        transition-colors
-                      `}
-                    >
-
-                      <span
-                        className={`
-                          ${rule.accentText}
-                          group-hover:tracking-wide
-                          transition-all
-                        `}
-                      >
-                        Inspect Barrier
-                      </span>
-
-                      <div
-                        className={`
-                          w-7
-                          h-7
-                          rounded-lg
-                          ${rule.btnBg}
-                          flex
-                          items-center
-                          justify-center
-                          transition-all
-                          duration-300
-                          shadow-sm
-                        `}
-                      >
-
-                        <ArrowUpRight
-                          className="
-                            w-4
-                            h-4
-                            group-hover:translate-x-0.5
-                            group-hover:-translate-y-0.5
-                            transition-transform
-                          "
-                        />
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                );
-
-              })}
-
+          {/* HIGHLIGHT CHIPS */}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-amber-500/30 transition-colors text-xs font-medium text-slate-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>Zero-Energy State &amp; LOTO Isolation</span>
             </div>
-
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-cyan-500/30 transition-colors text-xs font-medium text-slate-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <span>Atmospheric &amp; Continuous Gas Checks</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] hover:border-rose-500/30 transition-colors text-xs font-medium text-slate-300">
+              <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+              <span>100% Tie-Off &amp; Line of Fire Barriers</span>
+            </div>
           </div>
 
         </div>
 
+        {/* =====================================================
+            SIX BOXES GRID - SPREAD NEATLY (3-COLUMN ON DESKTOP)
+        ===================================================== */}
+        <div
+          className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+            gap-6
+            lg:gap-7
+            w-full
+          "
+        >
+          {rules.map((rule) => {
+            const Icon = rule.icon;
+
+            return (
+              <div
+                key={rule.id}
+                onClick={() => setSelectedRule(rule)}
+                className={`
+                  group
+                  relative
+                  ${rule.cardBg}
+                  rounded-2xl
+                  p-6
+                  sm:p-7
+                  border
+                  ${rule.borderColor}
+                  shadow-xl
+                  ${rule.shadowColor}
+                  transition-all
+                  duration-300
+                  hover:-translate-y-2
+                  hover:scale-[1.015]
+                  cursor-pointer
+                  flex
+                  flex-col
+                  justify-between
+                  overflow-hidden
+                  min-h-[300px]
+                `}
+              >
+                {/* AMBIENT HOVER FLARE */}
+                <div
+                  className={`
+                    absolute
+                    -top-12
+                    -right-12
+                    w-48
+                    h-48
+                    ${rule.flareBg}
+                    rounded-full
+                    blur-2xl
+                    opacity-0
+                    group-hover:opacity-100
+                    transition-opacity
+                    duration-500
+                    pointer-events-none
+                  `}
+                />
+
+                {/* SHIMMER EFFECT */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    -translate-x-full
+                    group-hover:translate-x-full
+                    transition-transform
+                    duration-1000
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white/[0.07]
+                    to-transparent
+                    pointer-events-none
+                  "
+                />
+
+                {/* CARD CONTENT */}
+                <div className="relative z-10">
+                  {/* TOP ROW */}
+                  <div className="flex items-center justify-between mb-5">
+                    {/* ICON */}
+                    <div
+                      className={`
+                        w-13
+                        h-13
+                        p-3
+                        rounded-xl
+                        bg-gradient-to-br
+                        ${rule.iconBg}
+                        text-slate-950
+                        flex
+                        items-center
+                        justify-center
+                        shadow-md
+                        group-hover:rotate-6
+                        group-hover:scale-110
+                        transition-all
+                        duration-300
+                      `}
+                    >
+                      <Icon className="w-6 h-6 stroke-[2.5]" />
+                    </div>
+
+                    {/* CODE */}
+                    <span
+                      className={`
+                        flex
+                        items-center
+                        gap-1.5
+                        px-3
+                        py-1
+                        rounded-full
+                        text-xs
+                        font-mono
+                        font-bold
+                        border
+                        transition-all
+                        ${rule.accentBg}
+                      `}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                      {rule.code}
+                    </span>
+                  </div>
+
+                  {/* TITLE */}
+                  <h3
+                    className="
+                      text-xl
+                      font-bold
+                      font-heading
+                      text-white
+                      mb-2.5
+                      group-hover:text-white
+                      transition-colors
+                    "
+                  >
+                    {rule.title}
+                  </h3>
+
+                  {/* DESCRIPTION */}
+                  <p
+                    className="
+                      text-xs
+                      sm:text-[13px]
+                      text-slate-300/90
+                      leading-relaxed
+                      mb-4
+                      group-hover:text-slate-100
+                      transition-colors
+                      min-h-[38px]
+                    "
+                  >
+                    {rule.shortDescription}
+                  </p>
+
+                  {/* ENERGY VECTOR */}
+                  <div
+                    className="
+                      inline-flex
+                      items-center
+                      px-3
+                      py-1
+                      rounded-lg
+                      bg-white/[0.04]
+                      border
+                      border-white/[0.08]
+                      text-xs
+                      font-mono
+                      text-slate-300
+                      mb-2
+                    "
+                  >
+                    {rule.vectorTag}
+                  </div>
+                </div>
+
+                {/* BOTTOM ROW */}
+                <div
+                  className="
+                    relative
+                    z-10
+                    pt-4
+                    mt-4
+                    border-t
+                    border-white/[0.08]
+                    flex
+                    items-center
+                    justify-between
+                    text-xs
+                    font-bold
+                    font-mono
+                    transition-colors
+                  "
+                >
+                  <span
+                    className={`
+                      ${rule.accentText}
+                      group-hover:tracking-wide
+                      transition-all
+                    `}
+                  >
+                    Inspect Barrier
+                  </span>
+
+                  <div
+                    className={`
+                      w-8
+                      h-8
+                      rounded-lg
+                      ${rule.btnBg}
+                      flex
+                      items-center
+                      justify-center
+                      transition-all
+                      duration-300
+                      shadow-sm
+                    `}
+                  >
+                    <ArrowUpRight
+                      className="
+                        w-4
+                        h-4
+                        group-hover:translate-x-0.5
+                        group-hover:-translate-y-0.5
+                        transition-transform
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* BOTTOM HELPER / STATUS */}
+        <div
+          className="
+            mt-10
+            text-xs
+            text-slate-400
+            font-mono
+            flex
+            items-center
+            justify-center
+            gap-2
+          "
+        >
+          <span className="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+          <span>
+            Hover or click any card to inspect barrier defense rules, energy hazards &amp; bow-tie triggers
+          </span>
+        </div>
 
         {/* =====================================================
             RULE DRILLDOWN MODAL
         ===================================================== */}
-
         {selectedRule && (
-
           <div
             className="
               fixed
@@ -976,15 +727,18 @@ export default function LifeSavingRulesSection() {
               items-center
               justify-center
               p-4
-              bg-black/85
-              backdrop-blur-md
+              sm:p-6
+              bg-black/80
+              backdrop-blur-sm
               animate-in
               fade-in
               duration-200
             "
+            onClick={() => setSelectedRule(null)}
           >
 
             <div
+              onClick={(e) => e.stopPropagation()}
               className="
                 bg-[#0F0F16]
                 border
@@ -1000,6 +754,11 @@ export default function LifeSavingRulesSection() {
                 relative
                 max-h-[90vh]
                 overflow-y-auto
+                animate-in
+                fade-in
+                zoom-in-95
+                lg:slide-in-from-right-8
+                duration-300
               "
             >
 

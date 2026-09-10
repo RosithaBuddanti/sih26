@@ -488,9 +488,6 @@ export default function ReportsTriageView({ onSelectReport, externalFilter, init
                             NON-SIF
                           </span>
                         )}
-                        <span className="text-[10px] text-slate-500 font-mono">
-                          {r.confidenceScore}% confidence
-                        </span>
                       </div>
                     </td>
 

@@ -5,60 +5,56 @@
   :root {
 
     --bg-primary: #FAF8F5;
-
     --bg-secondary: #F4F1EA;
-
     --bg-tertiary: #EDE8DE;
 
     --text-primary: #0F172A;
-
     --text-secondary: #334155;
-
     --text-muted: #64748B;
 
     --card-bg: rgba(255, 255, 255, 0.95);
-
     --card-border: rgba(226, 218, 206, 0.8);
 
     --obsidian-dark: #070709;
 
     --amber-gold: #F59E0B;
-
     --amber-gold-dark: #D97706;
 
   }
 
+
   .dark {
 
     --bg-primary: #070709;
-
     --bg-secondary: #0D0D11;
-
     --bg-tertiary: #14141A;
 
     --text-primary: #F8FAFC;
-
     --text-secondary: #94A3B8;
-
     --text-muted: #64748B;
 
     --card-bg: rgba(13, 13, 17, 0.9);
-
     --card-border: rgba(255, 255, 255, 0.08);
 
     --obsidian-dark: #050507;
 
     --amber-gold: #FBBF24;
-
     --amber-gold-dark: #F59E0B;
 
   }
 
+
   body {
 
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family:
+      'Plus Jakarta Sans',
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
 
   }
+
 
   h1,
   h2,
@@ -67,54 +63,159 @@
   h5,
   h6 {
 
-    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family:
+      'Outfit',
+      'Plus Jakarta Sans',
+      system-ui,
+      sans-serif;
 
   }
 
 }
+
+
+/* ========================================
+   ROPE HANGING ANIMATION
+======================================== */
 
 @keyframes ropeHangingSway {
 
   0%,
   100% {
 
-    transform: translateY(-4px) rotate(-3.5deg);
+    transform:
+      translateY(-4px) rotate(-3.5deg);
 
   }
 
+
   50% {
 
-    transform: translateY(5px) rotate(3.5deg);
+    transform:
+      translateY(5px) rotate(3.5deg);
 
   }
 
 }
+
+
+/* ========================================
+   ROPE DRAGGING ANIMATION
+======================================== */
 
 @keyframes ropeClimbingFast {
 
   0%,
   100% {
 
-    transform: scale(1.1) translateY(-6px) rotate(-6deg);
+    transform:
+      scale(1.1) translateY(-6px) rotate(-6deg);
 
   }
+
 
   50% {
 
-    transform: scale(1.1) translateY(6px) rotate(6deg);
+    transform:
+      scale(1.1) translateY(6px) rotate(6deg);
 
   }
 
 }
 
+
+/* ========================================
+   ANIMATION CLASSES
+======================================== */
+
 .animate-silly-bob {
 
-  animation: ropeHangingSway 2s ease-in-out infinite;
+  animation:
+    ropeHangingSway 2s ease-in-out infinite;
 
 }
 
+
 .animate-silly-drag {
 
-  animation: ropeClimbingFast 0.3s ease-in-out infinite;
+  animation:
+    ropeClimbingFast 0.3s ease-in-out infinite;
+
+}
+
+
+/* ========================================
+   MODERN PLATFORM CARD
+======================================== */
+
+.platform-card {
+
+  background-color: #FFFFFF;
+
+  border:
+    1px solid #EAE6E1;
+
+  border-radius:
+    1rem;
+
+  box-shadow:
+    0 2px 8px -2px rgba(15, 23, 42, 0.04),
+    0 1px 4px -1px rgba(15, 23, 42, 0.02);
+
+}
+
+
+/* ========================================
+   ELEVATED PLATFORM CARD
+======================================== */
+
+.platform-card-elevated {
+
+  background-color: #FFFFFF;
+
+  border:
+    1px solid #E2DCD5;
+
+  border-radius:
+    1.25rem;
+
+  box-shadow:
+    0 8px 24px -4px rgba(15, 23, 42, 0.06),
+    0 4px 12px -2px rgba(15, 23, 42, 0.03);
+
+}
+
+
+/* ========================================
+   CUSTOM SCROLLBAR
+======================================== */
+
+.custom-scrollbar::-webkit-scrollbar {
+
+  width: 6px;
+  height: 6px;
+
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+
+  background: #E2DCD5;
+
+  border-radius: 9999px;
+
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+
+  background: #CBD5E1;
 
 }

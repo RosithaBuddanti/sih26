@@ -318,8 +318,8 @@ export const PRECURSOR_PATTERNS = [
 export const SITE_RANKINGS = [
   {
     id: 'site-01',
-    name: 'Drill Floor Rig 9 (Moran Deep)',
-    code: 'OIL-DR-09',
+    name: 'Unit 1',
+    code: 'OIL-U1',
     category: 'Drilling Operations',
     totalReports: 78,
     sifReports: 23,
@@ -336,8 +336,8 @@ export const SITE_RANKINGS = [
   },
   {
     id: 'site-02',
-    name: 'Bay 2 Heavy Fabrication & Machining',
-    code: 'OIL-WS-B2',
+    name: 'Unit 2',
+    code: 'OIL-U2',
     category: 'Workshop & Maintenance',
     totalReports: 64,
     sifReports: 18,
@@ -354,8 +354,8 @@ export const SITE_RANKINGS = [
   },
   {
     id: 'site-03',
-    name: 'Derrick Tower Mast Rig 7',
-    code: 'OIL-DR-07',
+    name: 'Unit 3',
+    code: 'OIL-U3',
     category: 'Drilling Operations',
     totalReports: 51,
     sifReports: 13,
@@ -372,8 +372,8 @@ export const SITE_RANKINGS = [
   },
   {
     id: 'site-04',
-    name: 'Wellhead Pad-4 Gathering Station',
-    code: 'OIL-GS-04',
+    name: 'Unit 4',
+    code: 'OIL-U4',
     category: 'Production Gathering',
     totalReports: 42,
     sifReports: 10,
@@ -390,8 +390,8 @@ export const SITE_RANKINGS = [
   },
   {
     id: 'site-05',
-    name: 'Crude Storage Tank T-104 (Digboi)',
-    code: 'OIL-TK-104',
+    name: 'Unit 5',
+    code: 'OIL-U5',
     category: 'Storage & Terminals',
     totalReports: 36,
     sifReports: 8,
@@ -408,8 +408,8 @@ export const SITE_RANKINGS = [
   },
   {
     id: 'site-06',
-    name: 'Gas Sweetening Plant Train A',
-    code: 'OIL-GP-01',
+    name: 'Unit 6',
+    code: 'OIL-U6',
     category: 'Gas Processing',
     totalReports: 45,
     sifReports: 8,
@@ -426,8 +426,8 @@ export const SITE_RANKINGS = [
   },
   {
     id: 'site-07',
-    name: 'Central Pipeline Corridor KM-18',
-    code: 'OIL-PL-18',
+    name: 'Unit 7',
+    code: 'OIL-U7',
     category: 'Pipeline Logistics',
     totalReports: 28,
     sifReports: 4,

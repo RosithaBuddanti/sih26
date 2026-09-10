@@ -5,12 +5,6 @@ import {
   ArrowRight,
 } from 'lucide-react';
 
-// =====================================================
-// SIF INTELLIGENCE IMAGES
-// Images are stored inside:
-// src/assets/
-// =====================================================
-
 import sif1 from '../assets/sif1.jpg';
 import sif2 from '../assets/sif2.jpg';
 import sif3 from '../assets/sif3.jpg';
@@ -18,19 +12,10 @@ import sif4 from '../assets/sif4.jpg';
 import sif5 from '../assets/sif5.jpg';
 import sif6 from '../assets/sif6.jpg';
 
-// =====================================================
-// SIF INTELLIGENCE SECTION
-// =====================================================
-
 export default function CinematicVideoSection({
   onLogin,
-  onSeeHowItWorks
+  onSeeHowItWorks,
 }) {
-
-  // =====================================================
-  // IMAGE LIST
-  // =====================================================
-
   const images = [
     sif1,
     sif2,
@@ -40,83 +25,42 @@ export default function CinematicVideoSection({
     sif6,
   ];
 
-  // =====================================================
-  // IMAGE ORDER
-  // The first image is always the front image
-  // =====================================================
-
   const [imageOrder, setImageOrder] = useState(
     images.map((_, index) => index)
   );
 
-  // =====================================================
-  // ANIMATION STATE
-  // =====================================================
-
   const [isMoving, setIsMoving] = useState(false);
 
-  // =====================================================
-  // MOVE FRONT IMAGE TO BACK
-  // =====================================================
-
   const moveToNextImage = () => {
-
-    // Prevent multiple clicks during animation
     if (isMoving) return;
 
     setIsMoving(true);
 
-    // Wait for the front-card animation to finish
     setTimeout(() => {
-
       setImageOrder((currentOrder) => [
-
-        // Move first image to the end
         ...currentOrder.slice(1),
-
         currentOrder[0],
-
       ]);
 
       setIsMoving(false);
-
     }, 500);
   };
 
-  // =====================================================
-  // AUTOMATIC IMAGE CHANGE
-  // Changes every 3 seconds
-  // =====================================================
-
   useEffect(() => {
-
     const interval = setInterval(() => {
-
       moveToNextImage();
-
     }, 3000);
 
     return () => clearInterval(interval);
-
   }, [isMoving]);
 
-  // =====================================================
-  // RETURN
-  // =====================================================
-
   return (
-
     <section
       id="sif-intelligence"
       className="relative overflow-hidden bg-[#FAF8F5] py-24 text-slate-900 transition-colors duration-300 md:py-32"
     >
-
-      {/* =================================================
-          BACKGROUND DECORATION
-      ================================================= */}
-
+      {/* Background Decoration */}
       <div className="pointer-events-none absolute inset-0">
-
         <div
           className="
             absolute
@@ -142,15 +86,10 @@ export default function CinematicVideoSection({
             blur-3xl
           "
         />
-
       </div>
 
-      {/* =================================================
-          MAIN CONTAINER
-      ================================================= */}
-
+      {/* Main Container */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
         <div
           className="
             grid
@@ -161,14 +100,8 @@ export default function CinematicVideoSection({
             lg:gap-0
           "
         >
-
-          {/* =================================================
-              LEFT SIDE
-              STACKED IMAGE CAROUSEL
-          ================================================= */}
-
+          {/* Left Side - Image Carousel */}
           <div className="lg:col-span-6 lg:pr-14">
-
             <div
               className="
                 relative
@@ -180,17 +113,10 @@ export default function CinematicVideoSection({
                 lg:max-w-none
               "
             >
-
-              {/* =================================================
-                  STACKED IMAGES
-              ================================================= */}
-
               {imageOrder.map((imageIndex, stackIndex) => {
-
                 const isFront = stackIndex === 0;
 
                 return (
-
                   <div
                     key={imageIndex}
                     onClick={
@@ -210,67 +136,38 @@ export default function CinematicVideoSection({
                       transition-all
                       duration-500
                       ease-in-out
-                      ${isFront
-                        ? 'cursor-pointer'
-                        : ''
-                      }
+                      ${isFront ? 'cursor-pointer' : ''}
                     `}
                     style={{
-
-                      // =================================================
-                      // STACK ORDER
-                      // =================================================
-
-                      zIndex:
-                        images.length - stackIndex,
-
-                      // =================================================
-                      // POSITION + ROTATION
-                      // =================================================
+                      zIndex: images.length - stackIndex,
 
                       transform:
-
-                        // FRONT IMAGE
                         stackIndex === 0
-
                           ? isMoving
-
                             ? `
-                              translateY(18px)
-                              rotate(0deg)
-                              scale(0.96)
+                              translateX(-110%)
+                              rotate(-8deg)
+                              scale(0.92)
                             `
-
                             : `
+                              translateX(0)
                               translateY(0)
                               rotate(0deg)
                               scale(1)
                             `
-
-                          // BACK IMAGES
                           : `
-                            translateX(${stackIndex * 12}px)
+                            translateX(-${stackIndex * 12}px)
                             translateY(${stackIndex * 12}px)
-                            rotate(${stackIndex * 2}deg)
+                            rotate(-${stackIndex * 2}deg)
                             scale(${1 - stackIndex * 0.035})
                           `,
-
-                      // =================================================
-                      // OPACITY
-                      // =================================================
 
                       opacity:
                         stackIndex > 3
                           ? 0
                           : 1 - stackIndex * 0.12,
-
                     }}
                   >
-
-                    {/* =================================================
-                        IMAGE
-                    ================================================= */}
-
                     <img
                       src={images[imageIndex]}
                       alt={`SIF Intelligence ${imageIndex + 1}`}
@@ -278,13 +175,12 @@ export default function CinematicVideoSection({
                         h-full
                         w-full
                         object-cover
+                        select-none
+                        pointer-events-none
                       "
                     />
 
-                    {/* =================================================
-                        IMAGE GRADIENT
-                    ================================================= */}
-
+                    {/* Image Gradient */}
                     <div
                       className="
                         pointer-events-none
@@ -297,12 +193,8 @@ export default function CinematicVideoSection({
                       "
                     />
 
-                    {/* =================================================
-                        FRONT IMAGE CONTENT
-                    ================================================= */}
-
+                    {/* Front Image Content */}
                     {isFront && (
-
                       <div
                         className="
                           absolute
@@ -314,9 +206,6 @@ export default function CinematicVideoSection({
                           justify-between
                         "
                       >
-
-                        {/* IMAGE LABEL */}
-
                         <div
                           className="
                             rounded-xl
@@ -326,7 +215,6 @@ export default function CinematicVideoSection({
                             backdrop-blur-md
                           "
                         >
-
                           <p
                             className="
                               text-xs
@@ -349,19 +237,13 @@ export default function CinematicVideoSection({
                           >
                             Safety Signal Analysis
                           </p>
-
                         </div>
-
-                        {/* NEXT BUTTON */}
 
                         <button
                           type="button"
                           onClick={(event) => {
-
                             event.stopPropagation();
-
                             moveToNextImage();
-
                           }}
                           className="
                             flex
@@ -379,30 +261,17 @@ export default function CinematicVideoSection({
                           "
                           aria-label="Show next SIF image"
                         >
-
                           <ArrowRight className="h-5 w-5" />
-
                         </button>
-
                       </div>
-
                     )}
-
                   </div>
-
                 );
-
               })}
-
             </div>
-
           </div>
 
-          {/* =================================================
-              RIGHT SIDE
-              SIF INTELLIGENCE CONTENT
-          ================================================= */}
-
+          {/* Right Side - SIF Intelligence Content */}
           <div
             className="
               space-y-6
@@ -411,11 +280,7 @@ export default function CinematicVideoSection({
               lg:pl-14
             "
           >
-
-            {/* =================================================
-                SECTION TAG
-            ================================================= */}
-
+            {/* Section Tag */}
             <div
               className="
                 inline-flex
@@ -435,25 +300,12 @@ export default function CinematicVideoSection({
                 shadow-md
               "
             >
+              <Sparkles className="h-5 w-5 text-amber-600" />
 
-              <Sparkles
-                className="
-                  h-5
-                  w-5
-                  text-amber-600
-                "
-              />
-
-              <span>
-                SIF Intelligence
-              </span>
-
+              <span>SIF Intelligence</span>
             </div>
 
-            {/* =================================================
-                MAIN HEADING
-            ================================================= */}
-
+            {/* Main Heading */}
             <h3
               className="
                 font-heading
@@ -469,10 +321,7 @@ export default function CinematicVideoSection({
               Detect Hidden Safety Signals Before Incidents
             </h3>
 
-            {/* =================================================
-                PROMINENT METRIC
-            ================================================= */}
-
+            {/* Metric */}
             <div
               className="
                 flex
@@ -481,7 +330,6 @@ export default function CinematicVideoSection({
                 pt-1
               "
             >
-
               <span
                 className="
                   font-heading
@@ -504,13 +352,9 @@ export default function CinematicVideoSection({
               >
                 Continuous Digital Barrier Assurance
               </span>
-
             </div>
 
-            {/* =================================================
-                DESCRIPTION
-            ================================================= */}
-
+            {/* Description */}
             <p
               className="
                 text-base
@@ -520,24 +364,15 @@ export default function CinematicVideoSection({
                 sm:text-lg
               "
             >
-              High-energy hazards (pressure, voltage, gravity,
-              toxic gases) are analyzed instantly from field logs
-              to protect teams during high-risk workover and
-              refinery turnaround tasks.
+              High-energy hazards such as pressure, voltage,
+              gravity, and toxic gases are analyzed instantly
+              from field logs to protect teams during high-risk
+              workover and refinery turnaround tasks.
             </p>
 
-            {/* =================================================
-                FEATURES
-            ================================================= */}
-
+            {/* Features */}
             <div className="space-y-3 pt-2">
-
-              {/* =================================================
-                  FEATURE 1
-              ================================================= */}
-
               <div className="flex items-start gap-3">
-
                 <div
                   className="
                     mt-1
@@ -548,30 +383,16 @@ export default function CinematicVideoSection({
                     text-amber-700
                   "
                 >
-
                   <CheckCircle2 className="h-3.5 w-3.5" />
-
                 </div>
 
-                <span
-                  className="
-                    text-sm
-                    font-semibold
-                    text-slate-800
-                  "
-                >
-                  Live SIF Parsing: Instant energy vector &amp;
+                <span className="text-sm font-semibold text-slate-800">
+                  Live SIF Parsing: Instant energy vector and
                   hazard identification
                 </span>
-
               </div>
 
-              {/* =================================================
-                  FEATURE 2
-              ================================================= */}
-
               <div className="flex items-start gap-3">
-
                 <div
                   className="
                     mt-1
@@ -582,30 +403,16 @@ export default function CinematicVideoSection({
                     text-amber-700
                   "
                 >
-
                   <CheckCircle2 className="h-3.5 w-3.5" />
-
                 </div>
 
-                <span
-                  className="
-                    text-sm
-                    font-semibold
-                    text-slate-800
-                  "
-                >
+                <span className="text-sm font-semibold text-slate-800">
                   IOGP Guardrails: Standardized life-saving
                   rules compliance
                 </span>
-
               </div>
 
-              {/* =================================================
-                  FEATURE 3
-              ================================================= */}
-
               <div className="flex items-start gap-3">
-
                 <div
                   className="
                     mt-1
@@ -616,33 +423,18 @@ export default function CinematicVideoSection({
                     text-amber-700
                   "
                 >
-
                   <CheckCircle2 className="h-3.5 w-3.5" />
-
                 </div>
 
-                <span
-                  className="
-                    text-sm
-                    font-semibold
-                    text-slate-800
-                  "
-                >
+                <span className="text-sm font-semibold text-slate-800">
                   Zero Data Lag: Eliminates quarterly review
                   backlogs completely
                 </span>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
-
   );
 }

@@ -5,7 +5,7 @@ from .ai_analysis import AIAnalysisResponse
 
 class SafetyReportCreate(BaseModel):
     report_type: str = Field(..., description="UNSAFE_ACT, UNSAFE_CONDITION, NEAR_MISS")
-    description: str = Field(..., min_length=5, description="Detailed description of observation")
+    description: str = Field(..., min_length=5, max_length=100, description="Detailed description of observation (max 100 characters)")
     location: str = Field(..., min_length=2, description="Operational location or unit")
     report_date: str = Field(..., description="Date of observation")
     additional_context: Optional[str] = None

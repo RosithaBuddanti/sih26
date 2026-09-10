@@ -7,7 +7,7 @@ import image4 from '../assets/image4.jpg';
 import image5 from '../assets/image5.jpg';
 import image6 from '../assets/image6.jpg';
 
-import { CheckCircle2, Flame } from 'lucide-react';
+import { CheckCircle2, Flame, ArrowRight } from 'lucide-react';
 
 export default function AboutSection({ onExplore }) {
   const images = [
@@ -25,16 +25,12 @@ export default function AboutSection({ onExplore }) {
 
   const [isMoving, setIsMoving] = useState(false);
 
-  // =====================================================
-  // MOVE FRONT IMAGE TO THE BACK
-  // =====================================================
-
+  // Move front image to the back
   const nextImage = () => {
     if (isMoving) return;
 
     setIsMoving(true);
 
-    // Wait for the movement animation to finish
     setTimeout(() => {
       setImageOrder((prev) => {
         const newOrder = [...prev];
@@ -51,11 +47,7 @@ export default function AboutSection({ onExplore }) {
     }, 500);
   };
 
-  // =====================================================
-  // AUTOMATIC IMAGE CHANGE
-  // Changes every 3 seconds
-  // =====================================================
-
+  // Automatic image change
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
@@ -69,39 +61,27 @@ export default function AboutSection({ onExplore }) {
       id="about"
       className="relative py-24 md:py-32 bg-slate-50 text-slate-900 overflow-hidden"
     >
-
-      {/* ================= MAIN CONTENT ================= */}
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-center">
 
-          {/* ================= LEFT SIDE - IMAGE STACK ================= */}
-
+          {/* LEFT SIDE - IMAGE STACK */}
           <div className="lg:col-span-6 lg:pr-14">
 
             <div
               className="
                 relative
                 mx-auto
+                h-[430px]
+                w-full
                 max-w-md
+                sm:h-[480px]
                 lg:max-w-none
-                h-80
-                sm:h-96
-                md:h-[420px]
               "
             >
 
-              {/* ================= STACKED IMAGES ================= */}
-
               {imageOrder.map((imageIndex, stackIndex) => {
-
                 const isFront = stackIndex === 0;
-
-                // Only show 4 cards in the visible stack
-                if (stackIndex > 3) {
-                  return null;
-                }
 
                 return (
                   <div
@@ -110,68 +90,160 @@ export default function AboutSection({ onExplore }) {
                     className={`
                       absolute
                       inset-0
-                      rounded-3xl
                       overflow-hidden
-                      bg-white
+                      rounded-3xl
                       border
                       border-slate-200
+                      bg-white
                       shadow-xl
-
-                      ${isMoving && isFront
-                        ? `
-                              z-40
-                              opacity-100
-                              translate-x-0
-                              translate-y-5
-                              scale-[0.96]
-                              rotate-0
-                            `
-                        : `
-                              ${stackIndex === 0
-                          ? 'z-40 scale-100 translate-x-0 translate-y-0 rotate-0'
-                          : stackIndex === 1
-                            ? 'z-30 scale-[0.95] translate-x-4 translate-y-2 rotate-1'
-                            : stackIndex === 2
-                              ? 'z-20 scale-[0.90] translate-x-8 translate-y-4 rotate-2'
-                              : 'z-10 scale-[0.85] translate-x-12 translate-y-6 rotate-3'
-                        }
-                            `
-                      }
-
                       transition-all
                       duration-500
                       ease-in-out
-
                       ${isFront ? 'cursor-pointer' : ''}
                     `}
+                    style={{
+                      zIndex: images.length - stackIndex,
+
+                      transform:
+                        stackIndex === 0
+                          ? isMoving
+                            ? `
+                              translateX(-110%)
+                              rotate(-8deg)
+                              scale(0.92)
+                            `
+                            : `
+                              translateX(0)
+                              rotate(0deg)
+                              scale(1)
+                            `
+                          : `
+                            translateX(-${stackIndex * 12}px)
+                            translateY(${stackIndex * 12}px)
+                            rotate(-${stackIndex * 2}deg)
+                            scale(${1 - stackIndex * 0.035})
+                          `,
+
+                      opacity:
+                        stackIndex > 3
+                          ? 0
+                          : 1 - stackIndex * 0.12,
+                    }}
                   >
 
                     <img
                       src={images[imageIndex]}
                       alt={`Industrial safety image ${imageIndex + 1}`}
                       className="
-                        w-full
                         h-full
+                        w-full
                         object-cover
                         select-none
                         pointer-events-none
                       "
                     />
 
+                    {/* Gradient Overlay */}
+                    <div
+                      className="
+                        pointer-events-none
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-black/50
+                        via-transparent
+                        to-transparent
+                      "
+                    />
+
+                    {/* Front Image Content */}
+                    {isFront && (
+                      <div
+                        className="
+                          absolute
+                          bottom-5
+                          left-5
+                          right-5
+                          flex
+                          items-center
+                          justify-between
+                        "
+                      >
+
+                        <div
+                          className="
+                            rounded-xl
+                            bg-black/60
+                            px-4
+                            py-2
+                            backdrop-blur-md
+                          "
+                        >
+                          <p
+                            className="
+                              text-xs
+                              font-semibold
+                              uppercase
+                              tracking-widest
+                              text-amber-300
+                            "
+                          >
+                            About SafetyAI
+                          </p>
+
+                          <p
+                            className="
+                              mt-1
+                              text-sm
+                              font-semibold
+                              text-white
+                            "
+                          >
+                            Precursor Intelligence
+                          </p>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            nextImage();
+                          }}
+                          className="
+                            flex
+                            h-11
+                            w-11
+                            items-center
+                            justify-center
+                            rounded-full
+                            bg-amber-400
+                            text-slate-950
+                            shadow-lg
+                            transition-transform
+                            duration-300
+                            hover:scale-110
+                          "
+                          aria-label="Show next safety image"
+                        >
+                          <ArrowRight className="h-5 w-5" />
+                        </button>
+
+                      </div>
+                    )}
+
                   </div>
                 );
               })}
 
             </div>
+
           </div>
 
 
-          {/* ================= RIGHT SIDE - CONTENT ================= */}
-
+          {/* RIGHT SIDE - CONTENT */}
           <div className="lg:col-span-6 lg:pl-14 space-y-6 text-left">
 
             {/* Section Label */}
-
             <div
               className="
                 inline-flex
@@ -204,7 +276,6 @@ export default function AboutSection({ onExplore }) {
 
 
             {/* Heading */}
-
             <h3
               className="
                 text-3xl
@@ -212,7 +283,6 @@ export default function AboutSection({ onExplore }) {
                 md:text-5xl
                 font-bold
                 text-slate-900
-                font-heading
                 leading-tight
                 tracking-tight
               "
@@ -222,7 +292,6 @@ export default function AboutSection({ onExplore }) {
 
 
             {/* Description */}
-
             <p
               className="
                 text-base
@@ -242,8 +311,7 @@ export default function AboutSection({ onExplore }) {
             </p>
 
 
-            {/* ================= CONTINUOUS ANALYSIS ================= */}
-
+            {/* CONTINUOUS ANALYSIS */}
             <div className="space-y-2.5 pt-1">
 
               <div
@@ -270,7 +338,6 @@ export default function AboutSection({ onExplore }) {
               >
 
                 {/* Unsafe Acts */}
-
                 <div
                   className="
                     flex
@@ -284,7 +351,6 @@ export default function AboutSection({ onExplore }) {
                     shadow-sm
                   "
                 >
-
                   <CheckCircle2
                     className="w-4 h-4 text-amber-500 shrink-0"
                   />
@@ -292,12 +358,10 @@ export default function AboutSection({ onExplore }) {
                   <span className="text-xs font-bold text-slate-800">
                     Unsafe Acts
                   </span>
-
                 </div>
 
 
                 {/* Unsafe Conditions */}
-
                 <div
                   className="
                     flex
@@ -311,7 +375,6 @@ export default function AboutSection({ onExplore }) {
                     shadow-sm
                   "
                 >
-
                   <CheckCircle2
                     className="w-4 h-4 text-amber-500 shrink-0"
                   />
@@ -319,12 +382,10 @@ export default function AboutSection({ onExplore }) {
                   <span className="text-xs font-bold text-slate-800">
                     Unsafe Conditions
                   </span>
-
                 </div>
 
 
-                {/* Near-Miss Reports */}
-
+                {/* Near Miss Reports */}
                 <div
                   className="
                     flex
@@ -338,7 +399,6 @@ export default function AboutSection({ onExplore }) {
                     shadow-sm
                   "
                 >
-
                   <CheckCircle2
                     className="w-4 h-4 text-amber-500 shrink-0"
                   />
@@ -346,7 +406,6 @@ export default function AboutSection({ onExplore }) {
                   <span className="text-xs font-bold text-slate-800">
                     Near-Miss Reports
                   </span>
-
                 </div>
 
               </div>
@@ -354,12 +413,10 @@ export default function AboutSection({ onExplore }) {
             </div>
 
 
-            {/* ================= KEY FEATURES ================= */}
-
-            <div className="space-y-2 pt-2">
+            {/* KEY FEATURES */}
+            <div className="space-y-3 pt-2">
 
               {/* Feature 1 */}
-
               <div className="flex items-start gap-2.5">
 
                 <div
@@ -372,9 +429,7 @@ export default function AboutSection({ onExplore }) {
                     shrink-0
                   "
                 >
-
                   <CheckCircle2 className="w-3.5 h-3.5" />
-
                 </div>
 
                 <span className="text-sm font-semibold text-slate-700">
@@ -386,7 +441,6 @@ export default function AboutSection({ onExplore }) {
 
 
               {/* Feature 2 */}
-
               <div className="flex items-start gap-2.5">
 
                 <div
@@ -399,9 +453,7 @@ export default function AboutSection({ onExplore }) {
                     shrink-0
                   "
                 >
-
                   <CheckCircle2 className="w-3.5 h-3.5" />
-
                 </div>
 
                 <span className="text-sm font-semibold text-slate-700">
@@ -411,7 +463,60 @@ export default function AboutSection({ onExplore }) {
 
               </div>
 
+
+              {/* Feature 3 */}
+              <div className="flex items-start gap-2.5">
+
+                <div
+                  className="
+                    mt-0.5
+                    p-1
+                    rounded-full
+                    bg-amber-100
+                    text-amber-600
+                    shrink-0
+                  "
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                </div>
+
+                <span className="text-sm font-semibold text-slate-700">
+                  Provides AI-driven insights for proactive industrial safety
+                  decision-making
+                </span>
+
+              </div>
+
             </div>
+
+
+            {/* Explore Button */}
+            {onExplore && (
+              <button
+                type="button"
+                onClick={onExplore}
+                className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-xl
+                  bg-slate-900
+                  px-6
+                  py-3
+                  font-semibold
+                  text-white
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:bg-slate-800
+                  hover:scale-105
+                "
+              >
+                Explore Platform
+
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            )}
 
           </div>
 

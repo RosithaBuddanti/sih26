@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 
 class LoginRequest(BaseModel):
@@ -13,8 +13,12 @@ class UserResponse(BaseModel):
     full_name: str
     role: str
     organization_name: Optional[str] = None
+    is_admin: bool = False
+    role_name: str = "Normal User"
+    permissions: List[str] = []
 
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: UserResponse
+

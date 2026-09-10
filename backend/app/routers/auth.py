@@ -11,17 +11,34 @@ from ..config import settings
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
-# Predefined 5 Organization accounts
+# Predefined 5 Organizations
 PRESET_ORGS = [
-    {"id": "id001", "name": "Oil India Limited – Operational Safety Unit", "email": "admin1@gmail.com", "pass": "Admin1@123", "officer": "HSE Lead Officer 01"},
-    {"id": "id002", "name": "Offshore Rig Operations & Drilling Division", "email": "admin2@gmail.com", "pass": "Admin2@123", "officer": "HSE Lead Officer 02"},
-    {"id": "id003", "name": "Refinery & Petrochemical Processing Center", "email": "admin3@gmail.com", "pass": "Admin3@123", "officer": "HSE Lead Officer 03"},
-    {"id": "id004", "name": "Exploration & Production Field Command", "email": "admin4@gmail.com", "pass": "Admin4@123", "officer": "HSE Lead Officer 04"},
-    {"id": "id005", "name": "Cross-Country Gas Transmission & Integrity", "email": "admin5@gmail.com", "pass": "Admin5@123", "officer": "HSE Lead Officer 05"},
+    {"id": "id001", "name": "Oil India Limited – Operational Safety Unit"},
+    {"id": "id002", "name": "Offshore Rig Operations & Drilling Division"},
+    {"id": "id003", "name": "Refinery & Petrochemical Processing Center"},
+    {"id": "id004", "name": "Exploration & Production Field Command"},
+    {"id": "id005", "name": "Cross-Country Gas Transmission & Integrity"},
+]
+
+# Predefined Admin and Normal User accounts
+PRESET_USERS = [
+    # Administrator accounts (Full privileges, audit, lock, static data reset)
+    {"org_id": "id001", "email": "admin1@gmail.com", "pass": "Admin1@123", "officer": "Chief HSE Administrator", "role": "ADMINISTRATOR"},
+    {"org_id": "id002", "email": "admin2@gmail.com", "pass": "Admin2@123", "officer": "HSE Lead Officer 02", "role": "ADMINISTRATOR"},
+    {"org_id": "id003", "email": "admin3@gmail.com", "pass": "Admin3@123", "officer": "HSE Lead Officer 03", "role": "ADMINISTRATOR"},
+    {"org_id": "id004", "email": "admin4@gmail.com", "pass": "Admin4@123", "officer": "HSE Lead Officer 04", "role": "ADMINISTRATOR"},
+    {"org_id": "id005", "email": "admin5@gmail.com", "pass": "Admin5@123", "officer": "HSE Lead Officer 05", "role": "ADMINISTRATOR"},
+
+    # Normal User accounts (Field safety operators, incident reporting, view telemetry)
+    {"org_id": "id001", "email": "user1@gmail.com", "pass": "User1@123", "officer": "Field Safety Operator", "role": "NORMAL_USER"},
+    {"org_id": "id002", "email": "user2@gmail.com", "pass": "User2@123", "officer": "Field Safety Specialist", "role": "NORMAL_USER"},
+    {"org_id": "id003", "email": "user3@gmail.com", "pass": "User3@123", "officer": "Plant Safety Technician", "role": "NORMAL_USER"},
+    {"org_id": "id004", "email": "user4@gmail.com", "pass": "User4@123", "officer": "Field Inspection Officer", "role": "NORMAL_USER"},
+    {"org_id": "id005", "email": "user5@gmail.com", "pass": "User5@123", "officer": "Pipeline Safety Monitor", "role": "NORMAL_USER"},
 ]
 
 def ensure_initial_seed(db: Session):
-    """Ensures the 5 authorized organizations and admin accounts exist in the DB."""
+    """Ensures authorized organizations, admin accounts, and normal user accounts exist in the DB."""
     for org_info in PRESET_ORGS:
         org = db.query(Organization).filter(Organization.id == org_info["id"]).first()
         if not org:
@@ -29,18 +46,43 @@ def ensure_initial_seed(db: Session):
             db.add(org)
             db.commit()
             db.refresh(org)
-        
-        user = db.query(User).filter(User.email == org_info["email"]).first()
+        elif org.name != org_info["name"]:
+            org.name = org_info["name"]
+            db.commit()
+    
+    for u_info in PRESET_USERS:
+        user = db.query(User).filter(User.email == u_info["email"]).first()
         if not user:
             user = User(
-                organization_id=org.id,
-                email=org_info["email"],
-                password=org_info["pass"],
-                full_name=org_info["officer"],
-                role="CHIEF_HSE_AUDITOR"
+                organization_id=u_info["org_id"],
+                email=u_info["email"],
+                password=u_info["pass"],
+                full_name=u_info["officer"],
+                role=u_info["role"]
             )
             db.add(user)
             db.commit()
+        else:
+            # Sync password and role in case DB existed previously
+            user.password = u_info["pass"]
+            user.role = u_info["role"]
+            user.full_name = u_info["officer"]
+            user.organization_id = u_info["org_id"]
+            db.commit()
+
+def calculate_role_info(role: str, email: str):
+    is_normal = role == "NORMAL_USER" or "user" in email.lower()
+    is_admin = not is_normal and (
+        role in ["ADMINISTRATOR", "CHIEF_HSE_AUDITOR"] or 
+        "admin" in email.lower()
+    )
+    role_name = "Administrator" if is_admin else "Normal User"
+    permissions = (
+        ["ALL", "MANAGE_USERS", "SETTINGS", "REPORTS_EDIT", "AUDIT", "VIEW_DASHBOARD", "RESET_DATA", "UPDATE_PRECURSOR_STATUS"]
+        if is_admin else
+        ["VIEW_DASHBOARD", "SUBMIT_OBSERVATION", "VIEW_REPORTS", "VIEW_SIGNALS"]
+    )
+    return is_admin, role_name, permissions
 
 @router.post("/login", response_model=TokenResponse)
 def login(payload: LoginRequest, db: Session = Depends(get_db)):
@@ -54,11 +96,19 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
         User.email == email_clean
     ).first()
 
+    # Fallback match by email directly if org_id matches user's org
+    if not user:
+        candidate = db.query(User).filter(User.email == email_clean).first()
+        if candidate and (candidate.organization_id.lower() == org_id_clean or org_id_clean in ["id001", "oil india limited"]):
+            user = candidate
+
     if not user or user.password != payload.password.strip():
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid Organization ID, Email, or Password."
         )
+
+    is_admin, role_name, permissions = calculate_role_info(user.role, user.email)
 
     # Issue JWT token containing verified user ID and organization ID
     expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -66,6 +116,8 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
         "sub": str(user.id),
         "org_id": user.organization_id,
         "email": user.email,
+        "role": user.role,
+        "is_admin": is_admin,
         "exp": expire
     }
     encoded_jwt = jwt.encode(token_claims, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
@@ -79,17 +131,25 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
             email=user.email,
             full_name=user.full_name,
             role=user.role,
+            is_admin=is_admin,
+            role_name=role_name,
+            permissions=permissions,
             organization_name=user.organization.name if user.organization else None
         )
     )
 
 @router.get("/me", response_model=UserResponse)
 def get_profile(current_user: User = Depends(get_current_user)):
+    is_admin, role_name, permissions = calculate_role_info(current_user.role, current_user.email)
     return UserResponse(
         id=current_user.id,
         organization_id=current_user.organization_id,
         email=current_user.email,
         full_name=current_user.full_name,
         role=current_user.role,
+        is_admin=is_admin,
+        role_name=role_name,
+        permissions=permissions,
         organization_name=current_user.organization.name if current_user.organization else None
     )
+
